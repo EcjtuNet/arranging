@@ -4,7 +4,7 @@ require 'predis-1.0/src/Autoloader.php';
 \Slim\Slim::registerAutoloader();
 Predis\Autoloader::register();
 
-date_default_timezone_set("UTC+8");
+date_default_timezone_set("Asia/Shanghai");
 function calc ($id, $cur, $per){
 		$min = floor(($id - $cur)/6) * $per / 60;
 		$time = time();
