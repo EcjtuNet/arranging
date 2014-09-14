@@ -14,10 +14,18 @@
     		font-size: 72px;
     	}
 		.nav-div{
+			margin-top: 20px;
+			font-family: "微软雅黑";
 			display: none;
 		}
 		.show{
 			display: block;
+		}
+		.nav-div p em b{
+			color: red;
+		}
+		ol li{
+			padding: 5px;
 		}
     </style>
 	<script>
@@ -71,7 +79,7 @@
 					<em><?php echo $id; ?></em>
 				</p>
 				<p>
-					<em>*预计在<b><?php echo $time; ?></b>面试，请做好准备</em>
+					<em>*预计在<b><?php echo $time; ?></b>面试，请做好准备。<b>请勿重复扫描二维码！</b></em>
 				</p>
 			</div>
 			<div class="nav-div">
