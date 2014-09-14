@@ -22,7 +22,7 @@
     </style>
 	<script>
 		$(document).ready(function(){
-			$('.nav li').click(function(ev){
+			$('.nav li.in').click(function(ev){
 				ev.preventDefault();
 				var ind = $(this).index();
 				$(this).siblings('.active').removeClass('active')
@@ -47,13 +47,13 @@
 				日新网面试排号系统
 			</h1>
 			<ul class="nav nav-pills">
-				<li class="active">
+				<li class="in active">
 					<a href="#">排号</a>
 				</li>
-				<li>
+				<li class="in">
 					<a href="#">面试流程</a>
 				</li>
-				<li>
+				<li class="in">
 					<a href="#">部门介绍</a>
 				</li>
 				<li>
@@ -75,7 +75,12 @@
 				</p>
 			</div>
 			<div class="nav-div">
-				
+				<ol>
+					<li>取号签到</li>
+					<li>分组填表</li>
+					<li>按序面试</li>
+					<li>等待通知</li>
+				</ol> 
 			</div>
 			<div class="nav-div">
 				<dl class="dl-horizontal">
