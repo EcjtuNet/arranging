@@ -12,7 +12,7 @@ $app->get('/:id', function ($id) {
 $app->get('/', function () use ($app) {
         $redis = new Predis\Client('tcp://127.0.0.1:6379');
         $id = $redis->incr('hr_arranging');
-        $app->redirect("/api.php/$id");
+        $app->redirect("/index.php/$id");
 });
 
 
