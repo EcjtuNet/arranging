@@ -84,10 +84,13 @@
 			</div>
 			<div class="nav-div">
 				<ol>
-					<li>取号签到</li>
+					<li>刷取二维码签到</li>
+					<li>排队候场</li>
 					<li>分组填表</li>
-					<li>按序面试</li>
-					<li>等待通知</li>
+					<li>按序入场面试</li>
+					<li>面试ing</li>
+					<li>面试结束</li>
+					<li>面试结果将在两天内以短信的形式通知 :) </li>
 				</ol> 
 			</div>
 			<div class="nav-div">
