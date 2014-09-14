@@ -8,7 +8,8 @@ date_default_timezone_set("Asia/Shanghai");
 function calc ($id, $cur, $per){
 		$min = floor(($id - $cur)/6) * $per / 60;
 		$time = time();
-		return date("G", strtotime("+$min minutes", $time)) . ":" . floor(date("i", strtotime("+$min minutes", $time))/10)*10;
+		$return_min = floor(date("i", strtotime("+$min minutes", $time))/10)*10;
+		return date("G", strtotime("+$min minutes", $time)) . ":" . ($return_min == 0 ? '00' : $return_min );
 }
 
 $app = new \Slim\Slim();
