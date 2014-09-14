@@ -44,10 +44,10 @@
 				您的号码是：
 			</p>
 			<p class="lead text-success text-center">
-				<em>121</em>
+				<em><?php echo $id; ?></em>
 			</p>
 			<p>
-				<em>*预计在<b>19:40</b>面试，请做好准备</em>
+				<em>*预计在<b><?php echo $time; ?></b>面试，请做好准备</em>
 			</p>
 			<dl class="dl-horizontal">
 				<dt>
