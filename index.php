@@ -8,7 +8,7 @@ $app = new \Slim\Slim();
 $app->get('/:id', function ($id) {
 	$redis = new Predis\Client('tcp://127.0.0.1:6379');
 	$cur = $reids->get('hr_arranging:cur');
-	$per = $redis->get('hr_arranging:per')
+	$per = $redis->get('hr_arranging:per');
 	$time = ($id <= $cur ? '00:00' : function ($id, $cur, $per) {
 		$min = floor(($id - $cur)/6) * $per / 60;
 		$time = time();
