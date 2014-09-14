@@ -8,7 +8,7 @@
 
     <!-- Bootstrap -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/js/jquery-1.11.0.min.js">
+    <script src="/js/jquery-1.11.0.min.js"></script>
     <style type="text/css">
     	p.lead em{
     		font-size: 72px;
