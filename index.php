@@ -4,16 +4,18 @@ require 'predis-1.0/src/Autoloader.php';
 \Slim\Slim::registerAutoloader();
 Predis\Autoloader::register();
 
+function calc ($id, $cur, $per){
+		$min = floor(($id - $cur)/6) * $per / 60;
+		$time = time();
+		return data("G", strtotime("+$min minutes", $time)) . ":" . floor(data("i", strtotime("+$min minutes", $time))/10)*10;
+}
+
 $app = new \Slim\Slim();
 $app->get('/:id', function ($id) {
 	$redis = new Predis\Client('tcp://127.0.0.1:6379');
 	$cur = $redis->get('hr_arranging:cur');
 	$per = $redis->get('hr_arranging:per');
-	$time = ($id <= $cur ? '00:00' : function ($id, $cur, $per) {
-		$min = floor(($id - $cur)/6) * $per / 60;
-		$time = time();
-		return data("G", strtotime("+$min minutes", $time)) . ":" . floor(data("i", strtotime("+$min minutes", $time))/10)*10;
-	});
+	$time = ($id <= $cur ? '00:00' : calc($id, $cur, $per));
     require 'show.php';
 });
 $app->get('/per/:sec', function ($sec) {
