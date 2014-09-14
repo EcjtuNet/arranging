@@ -4,10 +4,11 @@ require 'predis-1.0/src/Autoloader.php';
 \Slim\Slim::registerAutoloader();
 Predis\Autoloader::register();
 
+date_default_timezone_set("UTC+8");
 function calc ($id, $cur, $per){
 		$min = floor(($id - $cur)/6) * $per / 60;
 		$time = time();
-		return data("G", strtotime("+$min minutes", $time)) . ":" . floor(data("i", strtotime("+$min minutes", $time))/10)*10;
+		return date("G", strtotime("+$min minutes", $time)) . ":" . floor(date("i", strtotime("+$min minutes", $time))/10)*10;
 }
 
 $app = new \Slim\Slim();
