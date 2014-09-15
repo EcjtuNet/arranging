@@ -41,7 +41,7 @@ $app->get('/new', function () use ($app) {
 	$redis = new Predis\Client('tcp://127.0.0.1:6379');
 	$id = $redis->incr('hr_arranging');
 	$app->redirect("/index.php/$id");
-})
+});
 $app->get('/', function () use ($app) {
 	session_start();
 	if (isset($_SESSION['id'])) {
