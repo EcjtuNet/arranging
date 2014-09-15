@@ -79,7 +79,7 @@
 					<em><?php echo $id; ?></em>
 				</p>
 				<p>
-					<em>*预计在<b><?php echo $time; ?></b>面试，请做好准备。<b>请勿重复扫描二维码！</b></em>
+					<em>*预计在<b><?php echo $time; ?></b>面试，请做好准备。</em>
 				</p>
 			</div>
 			<div class="nav-div">

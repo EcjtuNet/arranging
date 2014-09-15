@@ -18,6 +18,12 @@ function calc ($id) {
 }
 
 $app = new \Slim\Slim();
+//强行排号
+$app->get('/new', function () use ($app) {
+	$redis = new Predis\Client('tcp://127.0.0.1:6379');
+	$id = $redis->incr('hr_arranging');
+	$app->redirect("/index.php/$id");
+});
 $app->get('/:id', function ($id) {
 	$time = calc($id);
     require 'show.php';
@@ -35,12 +41,6 @@ $app->get('/cur/:id', function ($id) {
 //取估算时间
 $app->get('/:id/time', function ($id) {
 	return calc($id);
-});
-//强行排号
-$app->get('/new', function () use ($app) {
-	$redis = new Predis\Client('tcp://127.0.0.1:6379');
-	$id = $redis->incr('hr_arranging');
-	$app->redirect("/index.php/$id");
 });
 $app->get('/', function () use ($app) {
 	session_start();
