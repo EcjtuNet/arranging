@@ -13,7 +13,7 @@ function calc ($id) {
 	$per = $redis->get('hr_arranging:per');
 	$min = floor(($id - $cur)/6) * $per / 60;
 	$time = time();
-	$return_min = floor(date("i", strtotime("+$min minutes", $time))/10)*10;
+	$return_min = ceil(date("i", strtotime("+$min minutes", $time))/10)*10;
 	return date("G", strtotime("+$min minutes", $time)) . ":" . ($return_min == 0 ? '00' : $return_min );
 }
 
