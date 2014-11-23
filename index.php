@@ -3,14 +3,14 @@ require 'Slim/Slim.php';
 require 'predis-1.0/src/Autoloader.php';
 \Slim\Slim::registerAutoloader();
 Predis\Autoloader::register();
-
+define('REDIS_BASE_KEY', 'hr_arranging')
 date_default_timezone_set("Asia/Shanghai");
 
 //估算时间
 function calc ($id) {
 	$redis = new Predis\Client('tcp://127.0.0.1:6379');
-	$cur = $redis->get('hr_arranging:cur');
-	$per = $redis->get('hr_arranging:per');
+	$cur = $redis->get(REDIS_BASE_KEY.':cur');
+	$per = $redis->get(REDIS_BASE_KEY.':per');
 	$min = floor(ceil(($id - $cur)/6) * $per / 60);
 	$time = time();
 	$return_min = floor(date("i", strtotime("+$min minutes", $time))/10)*10;
@@ -21,7 +21,7 @@ $app = new \Slim\Slim();
 //强行排号
 $app->get('/new', function () use ($app) {
 	$redis = new Predis\Client('tcp://127.0.0.1:6379');
-	$id = $redis->incr('hr_arranging');
+	$id = $redis->incr(REDIS_BASE_KEY);
 	$app->redirect("/index.php/$id");
 });
 $app->get('/:id', function ($id) {
@@ -31,12 +31,12 @@ $app->get('/:id', function ($id) {
 //设置每组平均时间，单位秒
 $app->get('/per/:sec', function ($sec) {
 	$redis = new Predis\Client('tcp://127.0.0.1:6379');
-	$redis->set('hr_arranging:per', $sec);
+	$redis->set(REDIS_BASE_KEY.':per', $sec);
 });
 //设置当前正在面试的人的id
 $app->get('/cur/:id', function ($id) {
 	$redis = new Predis\Client('tcp://127.0.0.1:6379');
-	$redis->set('hr_arranging:cur', $id);
+	$redis->set(REDIS_BASE_KEY.':cur', $id);
 });
 //取估算时间
 $app->get('/:id/time', function ($id) {
@@ -48,7 +48,7 @@ $app->get('/', function () use ($app) {
 		$id = $_SESSION['id'];
 	} else {
 		$redis = new Predis\Client('tcp://127.0.0.1:6379');
-		$id = $redis->incr('hr_arranging');
+		$id = $redis->incr(REDIS_BASE_KEY);
 		$_SESSION['id'] = $id;
 	}
 	$app->redirect("/index.php/$id");
